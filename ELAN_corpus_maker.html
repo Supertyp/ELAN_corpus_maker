@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ELAN Inventory</title>
+  <title>ELAN corpus maker</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -116,7 +116,7 @@ th {
 
 <body style="">
 <div id="wrapper">
-	<h2 id="headline"><span class="glyphicon glyphicon-list-alt"></span> ELAN inventory
+	<h2 id="headline"><span class="glyphicon glyphicon-list-alt"></span> ELAN corpus maker
 	<button style="float:right;font-size:14px;padding:10px;" onclick="cleanDisplay()"><span class="glyphicon glyphicon-remove"></span> clear display</button>
 	<button style="float:right;font-size:14px;padding:10px;" onclick="sortem()"><span class="glyphicon glyphicon-sort-by-alphabet"></span> sort files</button>
 	<button style="float:right;font-size:14px;padding:10px;" onclick="exportCorpus()"><span class="glyphicon glyphicon-export"></span> export corpus</button>
@@ -126,10 +126,10 @@ th {
 	<hr id="headhr" > 
 	<div id="first-div">
 		<p id="description">look inside the elan files by dragging them from your folder and dropping them on the right. 
-		   Use the checkboxes to include or exclude tiers in the corpus.</p>
+		   Use the radio buttons to select the tier to build the corpus.</p>
 		<ul>
-			<li class="list">include: check all tiers you want to include</li>
-			<li class="list">main: check all tiers which are the main tiers to which the other tiers refer</li>
+			<li class="list">input: ELAN .eaf files</li>
+			<li class="list">output: single CSV file</li>
 		</ul>
 		
 	</div> 
@@ -153,22 +153,12 @@ function howTo() {
     alert('GUIDELINES' + '\n\n'
         + 'IMPORTANT: The ELAN files are not altered on your computer in any way and are ' + '\n'
         +'not sent off to the server. The application lives only in your local browser!' + '\n\n'
-        +'ELAN Inventory shows a summary of your ELAN files and compiles an exportable' + '\n'
-        +'dictionary which can be used to create an ANNIS corpus.' + '\n\n' 
+        +'ELAN corpus maker shows a summary of your ELAN files and compiles an exportable' + '\n'
+        +'CSV which can be used to create a corpus.' + '\n\n' 
 		
-		+'The dictionary contains:' + '\n\n'
-		+'  ~  file names' + '\n\n'
-		+'  ~  list of main tiers (please check the boxes for each main tier. Main tiers are' + '\n'
-        +'      the tiers which will form the lineup of words in the corpus. The other' + '\n'
-        +'      tiers usually reference the main tiers as annotations. You can select' + '\n'
-        +'      serveral tiers as main tiers.)' + '\n\n'
-		+'  ~  list of tiers which should be ignored in the corpus (please uncheck the boxes in the include' + '\n'
-		+'      columns.)' + '\n\n'		
-		+'  ~  tier names in each file and their content' + '\n\n'
-		+'Just drag and drop the files onto the grey area to see their content. The tables indicate the number of '
-		+'annotations, words and letters in each tier.' + '\n\n'
-		+'For more information please contact: Wolfgang.barth@anu.edu.au ' + '\n\n'
-		+'Centre of Excellence for the Dynamics of Language, 2020' + '\n\n\n\n')
+		+'The CSV file contains:' + '\n\n'
+		+'  ~  file name' + '\n\n'
+		+'  ~  string of all annotations of the selected tier' + '\n\n\n\n')
 }
 
 // BUTTONS FUNCTIONS -------------------------------------------------------------------------------------
@@ -490,7 +480,7 @@ function tableCreate(testList) {
   
   // create summary row in each table
   var trsummary = document.createElement('tr');
-  for (var x = 0; x < 3; x++) {
+  for (var x = 0; x < 2; x++) {
 	  var td = document.createElement('td');
 	  td.appendChild(document.createTextNode(' '))
 	  td.style.cssText = 'background-color:  white;'
